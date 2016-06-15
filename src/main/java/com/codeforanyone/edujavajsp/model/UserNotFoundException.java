@@ -1,19 +1,19 @@
 package com.codeforanyone.edujavajsp.model;
 
 /** 
- * When a lolcat id value is given that doesn't exist in the database,
+ * When a (lolcat) user id value is given that doesn't exist in the database,
  * this exception is thrown.
  * 
- * @author jennybrown
+ * @author jennybrown and jacstone
  *
  */
-public class CatNotFoundException extends Exception {
+public class UserNotFoundException extends Exception {
 
-	public CatNotFoundException() {
+	public UserNotFoundException() {
 		super();
 	}
 
-	public CatNotFoundException(String message) {
+	public UserNotFoundException(String message) {
 		super(message);
 	}
 
