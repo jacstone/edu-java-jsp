@@ -9,6 +9,11 @@ package com.codeforanyone.edujavajsp.model;
  */
 public class UserNotFoundException extends Exception {
 
+	/**
+	 * Default generated ID for exception
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public UserNotFoundException() {
 		super();
 	}

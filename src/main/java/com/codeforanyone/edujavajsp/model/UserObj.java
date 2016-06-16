@@ -1,56 +1,96 @@
 package com.codeforanyone.edujavajsp.model;
 
 public class UserObj {
+	Integer id;
+	String userName;
+	String pw;
+	String firstName;
+	String lastName;
+	String phone;
+	String email;
+	boolean isPhonePrivate;
+	boolean isEmailPrivate;
+
+	public UserObj() {
+
+	}
+
+	public String toString() {
+		return "User " + id + ":" + userName + " : " + firstName + " " + lastName + " : "
+				+ (isPhonePrivate ? "HIDDEN" : phone) + " : " + (isEmailPrivate ? "HIDDEN" : email);
+	}
+
+	public Integer getId() {
+		return id;
+	}
 
 	public String getUserName() {
-		// TODO Auto-generated method stub
-		return null;
+		return userName;
 	}
 
 	public String getPW() {
-		// TODO Auto-generated method stub
-		return null;
+		return pw;
 	}
 
 	public String getFirstName() {
-		// TODO Auto-generated method stub
-		return null;
+		return firstName;
 	}
-	
+
 	public String getLastName() {
-		// TODO Auto-generated method stub
-		return null;
+		return lastName;
 	}
 
 	public String getPhone() {
-		// TODO Auto-generated method stub
-		return null;
+		return phone;
 	}
 
 	public String getEmail() {
-		// TODO Auto-generated method stub
-		return null;
+		return email;
 	}
 
 	public boolean getIsPhonePrivate() {
-		// TODO Auto-generated method stub
-		return false;
+		return isPhonePrivate;
 	}
 
 	public boolean getIsEmailPrivate() {
-		// TODO Auto-generated method stub
-		return false;
+		return isEmailPrivate;
 	}
 
-	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setId(int int1) {
-		// TODO Auto-generated method stub
-		
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setIsEmailPrivate(boolean isEmailPrivate) {
+		this.isEmailPrivate = isEmailPrivate;
+
+	}
+
+	public void setIsPhonePrivate(boolean isPhonePrivate) {
+		this.isPhonePrivate = isPhonePrivate;
+	}
+
+	public void setPW(String pw) {
+		this.pw = pw;
+	}
 
 }
