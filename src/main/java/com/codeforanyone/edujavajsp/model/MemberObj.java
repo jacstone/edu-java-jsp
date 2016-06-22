@@ -3,7 +3,7 @@ package com.codeforanyone.edujavajsp.model;
 public class MemberObj {
 	Integer id;
 	Integer userId;
-	String role;
+	Integer roleId;
 	Integer petitionId;
 
 	public Integer getId() {
@@ -14,8 +14,8 @@ public class MemberObj {
 		return userId;
 	}
 
-	public String getRole() {
-		return role;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
 	public Integer getPetitionId() {
@@ -30,8 +30,8 @@ public class MemberObj {
 		this.userId = userId;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	public void setPetitionId(Integer petitionId) {

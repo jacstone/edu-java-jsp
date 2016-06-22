@@ -50,7 +50,7 @@ public class MemberDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, m.getUserId());
-			pstmt.setString(2, m.getRole());
+			pstmt.setInt(2, m.getRoleId());
 			pstmt.setInt(3, m.getPetitionId());
 			pstmt.executeUpdate();
 
@@ -74,7 +74,7 @@ public class MemberDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, m.getUserId());
-			pstmt.setString(2, m.getRole());
+			pstmt.setInt(2, m.getRoleId());
 			pstmt.setInt(3, m.getPetitionId());
 			pstmt.executeUpdate();
 		} finally {
@@ -183,7 +183,7 @@ public class MemberDAO {
 		MemberObj m = new MemberObj();
 		m.setId(res.getInt("member_id"));
 		m.setUserId(res.getInt("user_id"));
-		m.setRole(res.getString("role"));
+		m.setRoleId(res.getInt("role_id"));
 		m.setPetitionId(res.getInt("petition_id"));
 		return m;
 	}
