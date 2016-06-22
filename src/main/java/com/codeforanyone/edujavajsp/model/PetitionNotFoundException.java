@@ -1,5 +1,6 @@
 package com.codeforanyone.edujavajsp.model;
 
+@SuppressWarnings("serial")
 public class PetitionNotFoundException extends Exception {
 
 	/**

@@ -7,6 +7,7 @@ package com.codeforanyone.edujavajsp.model;
  * @author jennybrown and jacstone
  *
  */
+@SuppressWarnings("serial")
 public class UserNotFoundException extends Exception {
 
 	/**
