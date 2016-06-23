@@ -8,6 +8,10 @@
 
 	<!-- A servlet xml tag defines a servlet and gives it a short nickname -->
 	<servlet>
+		<servlet-name>LogInServlet</servlet-name>
+		<servlet-class>com.codeforanyone.edujavajsp.LogInServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>HelloServlet</servlet-name>
 		<servlet-class>com.codeforanyone.edujavajsp.HelloServlet</servlet-class>
 	</servlet>
@@ -15,21 +19,6 @@
 		<servlet-name>CrazyWordsServlet</servlet-name>
 		<servlet-class>com.codeforanyone.edujavajsp.CrazyWordsServlet</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>LOLCatManagerServlet</servlet-name>
-		<servlet-class>com.codeforanyone.edujavajsp.LOLCatManagerServlet</servlet-class>
-		<multipart-config>
-			<location>/tmp</location>
-			<max-file-size>20848820</max-file-size> <!--  20 megs -->
-			<max-request-size>418018841</max-request-size> <!-- 41 megs -->
-			<file-size-threshold>1048576</file-size-threshold> <!-- 1 meg -->
-		</multipart-config>
-	</servlet>
-	<servlet>
-		<servlet-name>LOLCatDisplayServlet</servlet-name>
-		<servlet-class>com.codeforanyone.edujavajsp.LOLCatDisplayServlet</servlet-class>
-	</servlet>
-
 	<!-- This is a special servlet that knows how to compile jsp pages. -->
 	<servlet id="jsp">
 		<servlet-name>jsp</servlet-name>
@@ -44,20 +33,16 @@
 	<!-- A servlet mapping matches a url pattern to which servlet should serve 
 		up that content -->
 	<servlet-mapping>
+		<servlet-name>LogInServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CrazyWordsServlet</servlet-name>
 		<url-pattern>/crazywords/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LOLCatDisplayServlet</servlet-name>
-		<url-pattern>/lolcats/show/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LOLCatManagerServlet</servlet-name>
-		<url-pattern>/lolcats/manage/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- This is a secondary mapping for hello servlet so we can see the effects 

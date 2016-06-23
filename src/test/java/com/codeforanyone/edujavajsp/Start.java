@@ -10,7 +10,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 public class Start {
 	public static void main(String[] args) throws Exception {
 		// Create a basic jetty server object that will listen on port 8080.
-		Server server = new Server(8080);
+		Server server = new Server(8081);
 
 		// Tell it where to find the code and jsps relative to our project.
 		WebAppContext bb = new WebAppContext();
