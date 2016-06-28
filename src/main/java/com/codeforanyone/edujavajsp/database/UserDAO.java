@@ -70,6 +70,7 @@ public class UserDAO {
 	}
 
 	private void update(UserObj u) throws SQLException {
+		// add where clause
 		String sql = "update user set user_name=?, user_password=?, user_first_name=?, user_last_name=?, user_phone=?, user_email=?, is_phone_private=?, is_email_private=?";
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -160,7 +161,7 @@ public class UserDAO {
 	private UserObj loadUser(ResultSet res) throws SQLException {
 		UserObj u = new UserObj();
 		u.setId(res.getInt("user_id"));
-		u.setPW(res.getString("user_password"));
+		u.setPW(encryptPW(res.getString("user_password")));
 		u.setUserName(res.getString("user_name"));
 		u.setFirstName(res.getString("user_first_name"));
 		u.setLastName(res.getString("user_last_name"));
@@ -173,16 +174,55 @@ public class UserDAO {
 
 	// ToDO: Work on password functions for retrieving, encrypting, and saving
 	// passwords
-	/*
-	 * public boolean isCorrectPW(String provided, UserObj u) throws
-	 * SQLException { // ToDO: finish function to verify if the password in the
-	 * provided // String is the same as the one in the database String pw = new
-	 * String(); boolean isSame = false;
-	 * 
-	 * return isSame; }
-	 * 
-	 * private String encryptPW(UserObj u) { // ToDO: finish function to create
-	 * an encrypted string for the password String encrypted = new String();
-	 * return encrypted; }
-	 */
+
+	  public boolean isCorrectPW(String provided, UserObj u) throws
+	  SQLException { // ToDO: finish function to verify if the password in the provided 
+	  // String is the same as the one in the database 
+	  String pw = u.getPW(); 
+	  provided = encryptPW(provided);
+	  
+	  if(pw.equals(provided)){
+		  return true;
+	  }else{
+		  return false;
+	  }
+	  }
+	  
+	  private String encryptPW(String pw) { 
+		  // ToDO: finish function to create an encrypted string for the password 
+		  String encrypted = pw;
+	  return encrypted; }
+	 
+	
+	
+	//Should this be a single object instead of a list?
+	public UserObj findUser(String text) throws SQLException, UserNotFoundException {
+		UserObj u = new UserObj();
+		String sql = "select * from user where user_name=? ";
+
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet res = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, text);
+			res = pstmt.executeQuery();
+
+			if (res.next()) {
+				u = loadUser(res);
+				return u;
+			} else {
+				throw new UserNotFoundException("Error: User not found with user_name: " + u + ". Have a good day!");
+			}
+		} finally {
+			DataSource.silentClose(pstmt);
+			DataSource.silentClose(conn);
+		}
+
+
+	}
+
 }
