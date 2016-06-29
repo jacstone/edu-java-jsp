@@ -16,9 +16,8 @@ import com.codeforanyone.edujavajsp.database.UserDAO;
 import com.codeforanyone.edujavajsp.model.UserNotFoundException;
 import com.codeforanyone.edujavajsp.model.UserObj;
 
-@SuppressWarnings("serial")
-public class LogInServlet extends HttpServlet {
-	static Logger log = LoggerFactory.getLogger(LogInServlet.class);
+public class UserLandingPage extends HttpServlet {
+	static Logger log = LoggerFactory.getLogger(UserLandingPage.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +26,8 @@ public class LogInServlet extends HttpServlet {
 											// "text/plain" ? Try it!
 
 		PrintWriter pw = resp.getWriter();
-		if (req.getParameter("username") != null) {
+		pw.println("<h2>WELCOME! </h2>");
+/*		if (req.getParameter("username") != null) {
 			UserDAO udao = new UserDAO();
 
 			try {
@@ -41,7 +41,7 @@ public class LogInServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (UserNotFoundException e) {
-				resp.sendRedirect("badLogIn.html");
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -49,7 +49,7 @@ public class LogInServlet extends HttpServlet {
 			pw.println("<h1>Hello!</h1>");
 		}
 
-		pw.close();
+*/		pw.close();
 	}
 
 	@Override

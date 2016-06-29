@@ -12,12 +12,8 @@
 		<servlet-class>com.codeforanyone.edujavajsp.LogInServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>com.codeforanyone.edujavajsp.HelloServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>CrazyWordsServlet</servlet-name>
-		<servlet-class>com.codeforanyone.edujavajsp.CrazyWordsServlet</servlet-class>
+		<servlet-name>UserLandingPage</servlet-name>
+		<servlet-class>com.codeforanyone.edujavajsp.UserLandingPage</servlet-class>
 	</servlet>
 	<!-- This is a special servlet that knows how to compile jsp pages. -->
 	<servlet id="jsp">
@@ -37,12 +33,8 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>HelloServlet</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CrazyWordsServlet</servlet-name>
-		<url-pattern>/crazywords/*</url-pattern>
+		<servlet-name>UserLandingPage</servlet-name>
+		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 
 	<!-- This is a secondary mapping for hello servlet so we can see the effects 
