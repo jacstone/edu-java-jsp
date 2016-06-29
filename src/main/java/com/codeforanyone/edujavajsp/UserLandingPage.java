@@ -27,16 +27,12 @@ public class UserLandingPage extends HttpServlet {
 
 		PrintWriter pw = resp.getWriter();
 		pw.println("<h2>WELCOME! </h2>");
-/*		if (req.getParameter("username") != null) {
+		if (req.getParameter("id") != null) {
 			UserDAO udao = new UserDAO();
 
 			try {
-				UserObj u = udao.findUser(req.getParameter("username"));
-				if (udao.isCorrectPW(req.getParameter("password"), u)) {
-					pw.println("PW matches!");
-				} else {
-					resp.sendRedirect("badLogIn.html");
-				}
+				UserObj u = udao.get(Integer.valueOf(req.getParameter("id")));
+				pw.println("<p>You are "+u.getUserName()+"!<p>");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,7 +45,7 @@ public class UserLandingPage extends HttpServlet {
 			pw.println("<h1>Hello!</h1>");
 		}
 
-*/		pw.close();
+		pw.close();
 	}
 
 	@Override

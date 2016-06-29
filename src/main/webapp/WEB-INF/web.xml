@@ -39,10 +39,6 @@
 
 	<!-- This is a secondary mapping for hello servlet so we can see the effects 
 		of login-required -->
-	<servlet-mapping>
-		<servlet-name>HelloServlet</servlet-name>
-		<url-pattern>/admin/hello</url-pattern>
-	</servlet-mapping>
 
 	<!-- more special mappings so jsp's work properly -->
 	<servlet-mapping>
