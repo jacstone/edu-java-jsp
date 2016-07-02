@@ -15,6 +15,14 @@
 		<servlet-name>UserLandingPage</servlet-name>
 		<servlet-class>com.codeforanyone.edujavajsp.UserLandingPage</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>PetitionPage</servlet-name>
+		<servlet-class>com.codeforanyone.edujavajsp.PetitionPage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>PetitionDataServlet</servlet-name>
+		<servlet-class>com.codeforanyone.edujavajsp.PetitionDataServlet</servlet-class>
+	</servlet>
 	<!-- This is a special servlet that knows how to compile jsp pages. -->
 	<servlet id="jsp">
 		<servlet-name>jsp</servlet-name>
@@ -35,6 +43,14 @@
 	<servlet-mapping>
 		<servlet-name>UserLandingPage</servlet-name>
 		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PetitionPage</servlet-name>
+		<url-pattern>/petition</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PetitionDataServlet</servlet-name>
+		<url-pattern>/petitionData</url-pattern>
 	</servlet-mapping>
 
 	<!-- This is a secondary mapping for hello servlet so we can see the effects 

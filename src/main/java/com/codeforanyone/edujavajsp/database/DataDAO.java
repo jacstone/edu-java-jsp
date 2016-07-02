@@ -166,6 +166,33 @@ public class DataDAO {
 		}
 
 	}
+	
+	public List<DataObj> list(int petitionId, int userId) throws SQLException {
+		List<DataObj> datas = new ArrayList<DataObj>();
+		String sql = "select * from data where petition_id=? and user_id=?";
+
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet res = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, petitionId);
+			pstmt.setInt(2, userId);
+			res = pstmt.executeQuery();
+
+			while (res.next()) {
+				DataObj d = loadData(res);
+				datas.add(d);
+			}
+			return datas;
+		} finally {
+			DataSource.silentClose(pstmt);
+			DataSource.silentClose(conn);
+		}
+
+	}
 
 	private DataObj loadData(ResultSet res) throws SQLException {
 DataObj d = new DataObj();

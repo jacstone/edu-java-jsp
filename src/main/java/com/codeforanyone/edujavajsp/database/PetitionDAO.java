@@ -185,5 +185,33 @@ public class PetitionDAO {
 
 
 	}
+	public List<PetitionObj> searchByAdmin(Integer userId) throws SQLException {
+		List<PetitionObj> petitions = new ArrayList<PetitionObj>();
+		String sql = "select * from petition where petition_admin=?";
+
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet res = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			// % is the wildcard character, and not used for exact match
+			pstmt.setInt(1, userId);
+			res = pstmt.executeQuery();
+
+			while (res.next()) {
+				PetitionObj p = loadPetition(res);
+				petitions.add(p);
+			}
+			return petitions;
+		} finally {
+			DataSource.silentClose(pstmt);
+			DataSource.silentClose(conn);
+		}
+
+
+	}
 
 }

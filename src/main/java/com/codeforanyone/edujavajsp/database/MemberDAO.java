@@ -177,7 +177,61 @@ public class MemberDAO {
 
 
 	}
+	public List<MemberObj> searchByUserId(Integer userId) throws SQLException {
+		List<MemberObj> members = new ArrayList<MemberObj>();
+		String sql = "select * from member where user_id=?";
 
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet res = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			// % is the wildcard character, and exact matches do not use wildcards
+			pstmt.setInt(1, userId);
+				res = pstmt.executeQuery();
+
+			while (res.next()) {
+				MemberObj m = loadMember(res);
+				members.add(m);
+			}
+			return members;
+		} finally {
+			DataSource.silentClose(pstmt);
+			DataSource.silentClose(conn);
+		}
+
+
+	}
+
+	public MemberObj findMember(int userId, int petitionId) throws SQLException, MemberNotFoundException {
+		String sql = "select * from member where user_id=? and petition_id=?";
+
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet res = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			pstmt.setInt(2, petitionId);
+			res = pstmt.executeQuery();
+
+			if (res.next()) {
+				MemberObj m = loadMember(res);
+				return m;
+			} else {
+				throw new MemberNotFoundException("Error: Member not found with user id " + userId + "!");
+			}
+		} finally {
+			DataSource.silentClose(pstmt);
+			DataSource.silentClose(conn);
+		}
+
+	}
 
 	private MemberObj loadMember(ResultSet res) throws SQLException{
 		MemberObj m = new MemberObj();

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +35,6 @@ public class LogInServlet extends HttpServlet {
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
 					resp.sendRedirect("/home?id="+u.getId());
-					//RequestDispatcher rd = req.getRequestDispatcher("/home");
-					//rd.forward(req, resp);
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}
