@@ -58,14 +58,12 @@ public class PetitionPage extends HttpServlet {
 				pw.println("</head>");
 				pw.println("<body>");
 				pw.println("<h1 align=center>" + p.getName() + "</h1>");
-				pw.println("<h2 align=center>" + u.getUserName() + " - " + r.getName() + "'s Data List</h2><br><br>");
+				pw.println("<h2 align=center>" + u.getUserName() + " - " + r.getName() + "'s Page</h2><br><br>");
 				pw.println("<strong>Actions</strong>");
 				pw.println("<ul>");
-				pw.println("<li><a href=/modifyData?type=search>Search</a>");
-				pw.println("<li><a href=/modifyData?type=add>Add Data</a>");
-				pw.println("<li><a href=/modifyData?type=update>Update Row</a>");
-				pw.println("<li><a href=/modifyData?type=delete>Delete Row</a>");
-				pw.println("<li><a href=/modifyData?type=role>Role Page</a>");
+				pw.println("<li><a href=/PetitionMemberServlet?id="+p.getId()+"&id2="+u.getId()+">Member List</a>");
+				pw.println("<li><a href=/PetitionDataServlet?id="+p.getId()+"&id2="+u.getId()+">Petition Data</a>");
+				pw.println("<li><a href=/PetitionExportServlet?id="+p.getId()+"&id2="+u.getId()+">Export Data</a>");
 				pw.println("</ul>");
 				List<DataObj> dlist;
 				if(r.getName().equalsIgnoreCase("volunteer")){
