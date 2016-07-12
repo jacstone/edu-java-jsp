@@ -61,39 +61,10 @@ public class PetitionPage extends HttpServlet {
 				pw.println("<h2 align=center>" + u.getUserName() + " - " + r.getName() + "'s Page</h2><br><br>");
 				pw.println("<strong>Actions</strong>");
 				pw.println("<ul>");
-				pw.println("<li><a href=/PetitionMemberServlet?id="+p.getId()+"&id2="+u.getId()+">Member List</a>");
-				pw.println("<li><a href=/PetitionDataServlet?id="+p.getId()+"&id2="+u.getId()+">Petition Data</a>");
-				pw.println("<li><a href=/PetitionExportServlet?id="+p.getId()+"&id2="+u.getId()+">Export Data</a>");
+				pw.println("<li><a href=/petitionMember?id="+p.getId()+"&id2="+u.getId()+">Member List</a>");
+				pw.println("<li><a href=/petitionData?id="+p.getId()+"&id2="+u.getId()+">Petition Data</a>");
+				pw.println("<li><a href=/petitionExport?id="+p.getId()+"&id2="+u.getId()+">Export Data</a>");
 				pw.println("</ul>");
-				List<DataObj> dlist;
-				if(r.getName().equalsIgnoreCase("volunteer")){
-					dlist = ddao.list(p.getId(), u.getId());
-					pw.println("<br><br><strong>Data Collected by You</strong><br>");
-					
-				}else{
-					dlist = ddao.list(p.getId());
-					pw.println("<br><br><strong>Data Entered:</strong><br>");
-
-				}
-				if (dlist.size() > 0) {
-					pw.println("<table style=\"width:100%\">");
-					pw.println(
-							"<tr><td>Id Number</td><td>Date</td><td>Time</td><td>Signatures Collected</td><td>Address</td>");
-					int totalSigs = 0;
-					for (int i = 0; i < dlist.size(); i++) {
-						DataObj dtemp = dlist.get(i);
-						totalSigs += dtemp.getSignatures();
-						pw.println("<tr><td>" + dtemp.getId() + "</td><td>" + dtemp.getDate() + "</td><td>"
-								+ dtemp.getStartTime() + " - " + dtemp.getStopTime() + "</td><td>"
-								+ dtemp.getSignatures() + "</td><td>" + dtemp.getAddress() + ", " + dtemp.getCity()
-								+ ", " + dtemp.getState() + " " + dtemp.getZip() + "</td>");
-					}
-					pw.println("</table>");
-					pw.println("Total number of signatures gathered is " + totalSigs + ".");
-				} else {
-					pw.println("You have not entered any data.");
-				}
-
 				pw.println("</body>");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

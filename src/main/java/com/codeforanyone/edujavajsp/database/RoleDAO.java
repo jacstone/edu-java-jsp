@@ -42,7 +42,7 @@ public class RoleDAO {
 	}
 
 	private void insert(RoleObj r) throws SQLException{
-		String sql = "insert into role (role_name, role_is_public, role_petition_id, role_creator) values (?,?,?,?)";
+		String sql = "insert into role (role_name) values (?,?)";
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 
@@ -50,9 +50,6 @@ public class RoleDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, r.getName());
-			pstmt.setBoolean(2, r.getIsPublic());
-			pstmt.setInt(3, r.getPetitionId());
-			pstmt.setInt(4, r.getCreator());
 			pstmt.executeUpdate();
 
 			ResultSet primaryKeys = pstmt.getGeneratedKeys();
@@ -67,7 +64,7 @@ public class RoleDAO {
 	}
 
 	private void update(RoleObj r) throws SQLException{
-		String sql = "update role set role_name=?, role_is_public=?, role_petition_id=?, role_creator=? where role_id=?";
+		String sql = "update role set role_name=? where role_id=?";
 		PreparedStatement pstmt = null;
 		Connection conn = null;
 
@@ -75,9 +72,6 @@ public class RoleDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, r.getName());
-			pstmt.setBoolean(2, r.getIsPublic());
-			pstmt.setInt(3, r.getPetitionId());
-			pstmt.setInt(4, r.getCreator());
 			pstmt.setInt(5, r.getId());
 			pstmt.executeUpdate();
 		} finally {
@@ -187,9 +181,6 @@ public class RoleDAO {
 		RoleObj r = new RoleObj();
 		r.setId(res.getInt("role_id"));
 		r.setName(res.getString("role_name"));
-		r.setIsPublic(res.getBoolean("role_is_public"));
-		r.setPetitionId(res.getInt("role_petition_id"));
-		r.setCreator(res.getInt("role_creator"));
 		return r;
 	}
 

@@ -23,6 +23,10 @@
 		<servlet-name>PetitionDataServlet</servlet-name>
 		<servlet-class>com.codeforanyone.edujavajsp.PetitionDataServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>UserHome</servlet-name>
+		<jsp-file>/WEB-INF/userHome.jsp</jsp-file>
+	</servlet>
 	<!-- This is a special servlet that knows how to compile jsp pages. -->
 	<servlet id="jsp">
 		<servlet-name>jsp</servlet-name>
@@ -41,7 +45,7 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>UserLandingPage</servlet-name>
+		<servlet-name>UserHome</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>

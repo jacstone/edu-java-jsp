@@ -34,12 +34,12 @@ public class LogInServlet extends HttpServlet {
 				UserObj u = udao.findUser(req.getParameter("username"));
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
-					resp.sendRedirect("/home?id="+u.getId());
+					req.setAttribute("UserObj", u);
+					resp.sendRedirect(resp.encodeRedirectURL("/home"));
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (UserNotFoundException e) {
 				resp.sendRedirect("badLogIn.html");
