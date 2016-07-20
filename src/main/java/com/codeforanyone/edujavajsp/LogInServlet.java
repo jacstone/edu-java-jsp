@@ -21,7 +21,7 @@ public class LogInServlet extends HttpServlet {
 	static Logger log = LoggerFactory.getLogger(LogInServlet.class);
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.debug("Received a doGet() request");
 		resp.setContentType("text/html"); // What does it do if you set
 											// "text/plain" ? Try it!
@@ -34,8 +34,9 @@ public class LogInServlet extends HttpServlet {
 				UserObj u = udao.findUser(req.getParameter("username"));
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
-					req.setAttribute("UserObj", u);
-					resp.sendRedirect(resp.encodeRedirectURL("/home"));
+					req.setAttribute("UserId", (Integer)u.getId());
+					pw.print("<br> u.getId(): " + u.getId() );
+					req.getRequestDispatcher("/home").forward(req, resp);
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}
@@ -54,9 +55,9 @@ public class LogInServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		log.debug("Received a doPost() request");
-		doGet(req, resp);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		log.debug("Received a doGet() request");
+		doPost(req, resp);
 	}
 
 }
