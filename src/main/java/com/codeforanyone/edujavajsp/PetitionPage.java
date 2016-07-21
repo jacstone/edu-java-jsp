@@ -3,8 +3,6 @@ package com.codeforanyone.edujavajsp;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +17,6 @@ import com.codeforanyone.edujavajsp.database.MemberDAO;
 import com.codeforanyone.edujavajsp.database.PetitionDAO;
 import com.codeforanyone.edujavajsp.database.RoleDAO;
 import com.codeforanyone.edujavajsp.database.UserDAO;
-import com.codeforanyone.edujavajsp.model.DataObj;
 import com.codeforanyone.edujavajsp.model.MemberNotFoundException;
 import com.codeforanyone.edujavajsp.model.MemberObj;
 import com.codeforanyone.edujavajsp.model.PetitionNotFoundException;
