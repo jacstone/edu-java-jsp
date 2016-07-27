@@ -36,7 +36,7 @@ public class LogInServlet extends HttpServlet {
 					pw.println("PW matches!");
 					req.setAttribute("UserId", (Integer)u.getId());
 					pw.print("<br> u.getId(): " + u.getId() );
-					req.getRequestDispatcher("/home").forward(req, resp);
+					req.getRequestDispatcher("/user").forward(req, resp);
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}

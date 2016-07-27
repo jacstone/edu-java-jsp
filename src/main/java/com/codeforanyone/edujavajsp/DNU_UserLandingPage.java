@@ -23,8 +23,8 @@ import com.codeforanyone.edujavajsp.model.UserNotFoundException;
 import com.codeforanyone.edujavajsp.model.UserObj;
 
 @SuppressWarnings("serial")
-public class UserLandingPage extends HttpServlet {
-	static Logger log = LoggerFactory.getLogger(UserLandingPage.class);
+public class DNU_UserLandingPage extends HttpServlet {
+	static Logger log = LoggerFactory.getLogger(DNU_UserLandingPage.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,10 +33,6 @@ public class UserLandingPage extends HttpServlet {
 
 		// "text/plain" ? Try it!
 
-		PrintWriter pw = resp.getWriter();
-		pw.println("<head>");
-		pw.println("<title>PD User Page</title>");
-		pw.println("</head>");
 		if (req.getParameter("id") != null) {
 			UserDAO udao = new UserDAO();
 			MemberDAO mdao = new MemberDAO();
@@ -44,43 +40,22 @@ public class UserLandingPage extends HttpServlet {
 
 			try {
 				UserObj u = udao.get(Integer.valueOf(req.getParameter("id")));
-				pw.println("<body>");
-				pw.println("<h1 align=center>WELCOME " + u.getUserName() + "!</h1>");
-				pw.println("<h2 align=center>Petition Drive User Page</h2><br><br>");
 
 				List<MemberObj> mlist = mdao.searchByUserId(u.getId());
 				int mlsize = mlist.size(); // size of member obj list
-				pw.println("<strong>Petitions</strong>");
-				if (mlsize > 0) {
-					pw.println("<ul>");
-					for (int i = 0; i < mlsize; i++) {
-						MemberObj mtemp = (MemberObj) mlist.get(i);
-						PetitionObj ptemp = pdao.get(mtemp.getPetitionId());
-									//id is petition_id and id2 is user_id
-						pw.println("<li> <a href=\"petition?id="+ptemp.getId()+"&id2="+u.getId()+"\">" + ptemp.getName()+"</a>");
-
-					}
-					pw.println("</ul>");
-				} else {
-					pw.println("<p>No Petitions Found. Please help a petition drive!</p>");
-				}
-				pw.println("</body>");
+				req.getRequestDispatcher("/home").forward(req, resp);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (UserNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (PetitionNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 
 		} else {
-			pw.println("<h1>Hello!</h1>");
 		}
 
-		pw.close();
 	}
 
 	@Override

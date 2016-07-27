@@ -49,6 +49,10 @@
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UserLandingPage</servlet-name>
+		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>PetitionPage</servlet-name>
 		<url-pattern>/petition</url-pattern>
 	</servlet-mapping>
