@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+body{
+	background-image:url("cork-board.jpg");
+	background-color:#BDB76B;
+}
+h1{
+	background-color: #FFFFFF;
+	text-align: center;
+}
+h2{
+	background-color: #FFFFFF;
+	text-align: center;
+}
+ul{
+	background-color:#F0E080;
+}
+p{
+	background-color: #F0E68C;
+}

@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +35,13 @@ public class LogInServlet extends HttpServlet {
 				UserObj u = udao.findUser(req.getParameter("username"));
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
-					req.setAttribute("UserId", (Integer)u.getId());
+					HttpSession session = req.getSession();
+					session.setAttribute("UserId", (Integer)u.getId());
 					pw.print("<br> u.getId(): " + u.getId() );
-					req.getRequestDispatcher("/user").forward(req, resp);
+					//req.setAttribute("page", "home");
+					//req.getRequestDispatcher("/user").forward(req, resp);
+					resp.sendRedirect("/user?page=home");
+					
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}
