@@ -29,8 +29,8 @@ import com.codeforanyone.edujavajsp.model.UserNotFoundException;
 import com.codeforanyone.edujavajsp.model.UserObj;
 
 @SuppressWarnings("serial")
-public class PetitionDataServlet extends HttpServlet {
-	static Logger log = LoggerFactory.getLogger(PetitionDataServlet.class);
+public class DNU_PetitionDataServlet extends HttpServlet {
+	static Logger log = LoggerFactory.getLogger(DNU_PetitionDataServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

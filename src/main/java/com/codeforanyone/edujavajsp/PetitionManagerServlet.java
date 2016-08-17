@@ -2,10 +2,7 @@ package com.codeforanyone.edujavajsp;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,27 +10,26 @@ import javax.servlet.http.HttpSession;
 
 import com.codeforanyone.edujavajsp.database.MemberDAO;
 import com.codeforanyone.edujavajsp.database.PetitionDAO;
-import com.codeforanyone.edujavajsp.database.UserDAO;
+import com.codeforanyone.edujavajsp.database.RoleDAO;
+import com.codeforanyone.edujavajsp.model.MemberNotFoundException;
 import com.codeforanyone.edujavajsp.model.MemberObj;
 import com.codeforanyone.edujavajsp.model.PetitionNotFoundException;
 import com.codeforanyone.edujavajsp.model.PetitionObj;
-import com.codeforanyone.edujavajsp.model.UserNotFoundException;
+import com.codeforanyone.edujavajsp.model.RoleNotFoundException;
 import com.codeforanyone.edujavajsp.model.UserObj;
 
 /**
- * Servlet implementation class UserManagerServlet
+ * Servlet implementation class PetitionManagerServlet
  */
-@WebServlet({ "/UserManagerServlet", "/user" })
-public class UserManagerServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserManagerServlet() {
-        super();
-    }
 
+public class PetitionManagerServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	public PetitionManagerServlet() {
+		super();
+	}
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -48,43 +44,55 @@ public class UserManagerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			if(req.getParameter("page").equals("home")){
-			homepage(req,res);
+				homepage(req,res);
 		}
 		else{
 			res.sendRedirect("Oops.html");
 		}
 		
 	}
-
 	private void homepage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		/*
+		 * HttpSession should contain prior to redirect:
+		 * userObj (info about user)
+		 * petitionObj (info about petition)
+		 * memberObj (info about user relation to petition)
+		 * roleName (name of the role the user has on this petition)
+		 */
+		
 		HttpSession session = req.getSession();
-		UserDAO udao = new UserDAO();
+		
 		MemberDAO mdao = new MemberDAO();
 		PetitionDAO pdao = new PetitionDAO();
-		UserObj uobj = null;
-		List<MemberObj> mobj = null;
-		PetitionObj [] pobj = null;
-		int userId = (Integer)session.getAttribute("UserId");
+		RoleDAO rdao = new RoleDAO();
+		MemberObj m = null;
+		PetitionObj p = null;
+		
+		UserObj u = (UserObj) session.getAttribute("userObj");
+		
 		try {
-			uobj = udao.get(userId);
-			mobj = mdao.searchByUserId(userId);
-			pobj = new PetitionObj [mobj.size()];
-			for(int i = 0; i<mobj.size(); i++){
-				//finds the petition object from the member object in the list by using the petition id within the member object
-				pobj[i] = pdao.get(mobj.get(i).getPetitionId());
-			}
+			m = mdao.findMember(u.getId(), Integer.valueOf(req.getParameter("id")));
+			p = pdao.get(Integer.valueOf(req.getParameter("id")));
+
+			//returns the name of the role that is associated with the member obj
+			session.setAttribute("roleName", rdao.get(m.getRoleId()).getName());
+
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (UserNotFoundException e) {
+		} catch (MemberNotFoundException e) {
 			e.printStackTrace();
 		} catch (PetitionNotFoundException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RoleNotFoundException e) {
 			e.printStackTrace();
 		}
-		session.removeAttribute("UserId");
-		session.setAttribute("userObj", uobj);
-		session.setAttribute("petitionObjAry", pobj);
-		req.getRequestDispatcher("/WEB-INF/uhome.jsp").forward(req, res);
+		 
+		session.setAttribute("memberObj", m);
+		session.setAttribute("petitionObj", p);
+				
+		req.getRequestDispatcher("/WEB-INF/phome.jsp").forward(req, res);
 	
 	}
 

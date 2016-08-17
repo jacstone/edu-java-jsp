@@ -17,7 +17,7 @@
 		pageContext.setAttribute("u", u, PageContext.PAGE_SCOPE);
 		
 		//Contains list of petitions the user is a member of
-		PetitionObj [] p = (PetitionObj []) session.getAttribute("petitionObj");
+		PetitionObj [] p = (PetitionObj []) session.getAttribute("petitionObjAry");
 		pageContext.setAttribute("p", p, PageContext.PAGE_SCOPE);
 	%>
 	<h1>
@@ -28,8 +28,8 @@
 	<br>
 	<ul>
 		<c:forEach var="p" items="${p}">
-			<c:url value="/user" var="purl">
-				<c:param name="page" value="petition"/>
+			<c:url value="/petition" var="purl">
+				<c:param name="page" value="home"/>
 				<c:param name="id" value="${p.id}"/>
 			</c:url>
 			<li><a href="${purl}"><c:out value="${p.name}"/></a>

@@ -10,12 +10,8 @@
     <servlet-class>com.codeforanyone.edujavajsp.UserManagerServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>PetitionPage</servlet-name>
-    <servlet-class>com.codeforanyone.edujavajsp.PetitionPage</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>PetitionDataServlet</servlet-name>
-    <servlet-class>com.codeforanyone.edujavajsp.PetitionDataServlet</servlet-class>
+    <servlet-name>PetitionManagerServlet</servlet-name>
+    <servlet-class>com.codeforanyone.edujavajsp.PetitionManagerServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>UserHome</servlet-name>
@@ -43,12 +39,8 @@
     <url-pattern>/user</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>PetitionPage</servlet-name>
+    <servlet-name>PetitionManagerServlet</servlet-name>
     <url-pattern>/petition</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>PetitionDataServlet</servlet-name>
-    <url-pattern>/petitionData</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>jsp</servlet-name>
