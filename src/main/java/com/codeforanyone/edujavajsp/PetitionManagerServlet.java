@@ -43,7 +43,8 @@ public class PetitionManagerServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-			if(req.getParameter("page").equals("home")){
+			
+		if(req.getParameter("page").equals("home")){
 				homepage(req,res);
 		}
 		else{
@@ -78,20 +79,24 @@ public class PetitionManagerServlet extends HttpServlet {
 			session.setAttribute("roleName", rdao.get(m.getRoleId()).getName());
 
 		} catch (NumberFormatException e) {
+			res.sendRedirect("Oops.html");
 			e.printStackTrace();
 		} catch (SQLException e) {
+			res.sendRedirect("Oops.html");
 			e.printStackTrace();
 		} catch (MemberNotFoundException e) {
+			res.sendRedirect("Oops.html");
 			e.printStackTrace();
 		} catch (PetitionNotFoundException e) {
+			res.sendRedirect("Oops.html");
 			e.printStackTrace();
 		} catch (RoleNotFoundException e) {
+			res.sendRedirect("Oops.html");
 			e.printStackTrace();
 		}
 		 
 		session.setAttribute("memberObj", m);
 		session.setAttribute("petitionObj", p);
-				
 		req.getRequestDispatcher("/WEB-INF/phome.jsp").forward(req, res);
 	
 	}
