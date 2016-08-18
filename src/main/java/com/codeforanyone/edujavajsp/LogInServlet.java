@@ -26,7 +26,14 @@ public class LogInServlet extends HttpServlet {
 		log.debug("Received a doGet() request");
 		resp.setContentType("text/html"); // What does it do if you set
 											// "text/plain" ? Try it!
-
+		HttpSession session = req.getSession(false);
+		if(session!=null){
+		session.invalidate();
+		}
+		else{
+			session = req.getSession(true);
+		}
+			
 		PrintWriter pw = resp.getWriter();
 		if (req.getParameter("username") != null) {
 			UserDAO udao = new UserDAO();
@@ -35,7 +42,7 @@ public class LogInServlet extends HttpServlet {
 				UserObj u = udao.findUser(req.getParameter("username"));
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
-					HttpSession session = req.getSession();
+					
 					session.setAttribute("UserId", (Integer)u.getId());
 					pw.print("<br> u.getId(): " + u.getId() );
 					//req.setAttribute("page", "home");
@@ -53,7 +60,7 @@ public class LogInServlet extends HttpServlet {
 			}
 			
 		} else {
-			pw.println("<h1>Hello!</h1>");
+			req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 		}
 
 		pw.close();

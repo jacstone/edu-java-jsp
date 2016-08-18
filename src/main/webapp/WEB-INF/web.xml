@@ -31,6 +31,10 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>LogInServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>UserHome</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
