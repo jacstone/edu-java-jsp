@@ -59,5 +59,7 @@
 		</ul>
 	</div>
 	<p>Queries to show</p>
+	<br>
+	<p><a href="/user?page=home"> Return to Home</a></p>
 </body>
 </html>

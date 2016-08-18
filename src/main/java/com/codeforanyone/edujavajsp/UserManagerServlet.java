@@ -64,6 +64,9 @@ public class UserManagerServlet extends HttpServlet {
 		UserObj uobj = null;
 		List<MemberObj> mobj = null;
 		PetitionObj [] pobj = null;
+		//If there is no attribute "UserID" and there is an attribute "userObj"
+		//then this is a return to the home page
+		if(session.getAttribute("UserId")!=null & session.getAttribute("userObj")==null){
 		int userId = (Integer)session.getAttribute("UserId");
 		try {
 			uobj = udao.get(userId);
@@ -86,6 +89,7 @@ public class UserManagerServlet extends HttpServlet {
 		session.removeAttribute("UserId");
 		session.setAttribute("userObj", uobj);
 		session.setAttribute("petitionObjAry", pobj);
+		}
 		req.getRequestDispatcher("/WEB-INF/uhome.jsp").forward(req, res);
 	
 	}
