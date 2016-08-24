@@ -27,16 +27,10 @@ public class LogInServlet extends HttpServlet {
 		resp.setContentType("text/html"); // What does it do if you set
 											// "text/plain" ? Try it!
 		HttpSession session = req.getSession(false);
-		if(session!=null){
-		session.invalidate();
-		System.out.println("session invalidated");
+		if (session != null & req.getParameter("username") != null) {
+			session.invalidate();
+		}
 		session = req.getSession(true);
-		}
-		else{
-			session = req.getSession(true);
-			System.out.println("new session created");
-		}
-			
 		PrintWriter pw = resp.getWriter();
 		if (req.getParameter("username") != null) {
 			UserDAO udao = new UserDAO();
@@ -45,13 +39,13 @@ public class LogInServlet extends HttpServlet {
 				UserObj u = udao.findUser(req.getParameter("username"));
 				if (udao.isCorrectPW(req.getParameter("password"), u)) {
 					pw.println("PW matches!");
-					
-					session.setAttribute("UserId", (Integer)u.getId());
-					pw.print("<br> u.getId(): " + u.getId() );
-					//req.setAttribute("page", "home");
-					//req.getRequestDispatcher("/user").forward(req, resp);
+
+					session.setAttribute("UserId", u.getId());
+					pw.print("<br> u.getId(): " + u.getId());
+					// req.setAttribute("page", "home");
+					// req.getRequestDispatcher("/user").forward(req, resp);
 					resp.sendRedirect("/user?page=home");
-					
+
 				} else {
 					resp.sendRedirect("badLogIn.html");
 				}
@@ -61,7 +55,7 @@ public class LogInServlet extends HttpServlet {
 				resp.sendRedirect("badLogIn.html");
 				e.printStackTrace();
 			}
-			
+
 		} else {
 			req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 		}
