@@ -29,9 +29,12 @@ public class LogInServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		if(session!=null){
 		session.invalidate();
+		System.out.println("session invalidated");
+		session = req.getSession(true);
 		}
 		else{
 			session = req.getSession(true);
+			System.out.println("new session created");
 		}
 			
 		PrintWriter pw = resp.getWriter();
