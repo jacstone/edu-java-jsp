@@ -47,12 +47,12 @@ public class LogInServlet extends HttpServlet {
 					resp.sendRedirect("/user?page=home");
 
 				} else {
-					resp.sendRedirect("badLogIn.html");
+					resp.sendRedirect("/badLogIn.html");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (UserNotFoundException e) {
-				resp.sendRedirect("badLogIn.html");
+				resp.sendRedirect("/badLogIn.html");
 				e.printStackTrace();
 			}
 
