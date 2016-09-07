@@ -48,7 +48,7 @@ public class PetitionManagerServlet extends HttpServlet {
 				homepage(req,res);
 		}
 		else{
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 		}
 		
 	}
@@ -79,19 +79,19 @@ public class PetitionManagerServlet extends HttpServlet {
 			session.setAttribute("roleName", rdao.get(m.getRoleId()).getName());
 
 		} catch (NumberFormatException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (MemberNotFoundException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (PetitionNotFoundException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (RoleNotFoundException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		}
 		 

@@ -77,13 +77,13 @@ public class UserManagerServlet extends HttpServlet {
 				pobj[i] = pdao.get(mobj.get(i).getPetitionId());
 			}
 		} catch (SQLException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (UserNotFoundException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		} catch (PetitionNotFoundException e) {
-			res.sendRedirect("Oops.html");
+			res.sendRedirect("/Static/Oops.html");
 			e.printStackTrace();
 		}
 		session.removeAttribute("UserId");

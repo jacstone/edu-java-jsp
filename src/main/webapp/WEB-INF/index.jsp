@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="MainStyle.css">
+<link rel="stylesheet" type="text/css" href="/Static/MainStyle.css">
 <%@ page import="com.codeforanyone.edujavajsp.model.*"%>
 <title>Petition Drives Login</title>
 </head>
